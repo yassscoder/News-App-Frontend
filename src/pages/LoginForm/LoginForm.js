@@ -58,11 +58,7 @@ export const LoginForm = (props) => {
               />
               {errors.password}
 
-              
-    
-             
-                 
-              <button type={"submit"}>Create post</button>
+              <button type={"submit"}>Login</button>
             </Form>
           )}
         </Formik>
