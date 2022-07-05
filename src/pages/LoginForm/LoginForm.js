@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { Navigate } from "react-router-dom";
+import { loginService } from "../../services/loginService";
+import {useUserTokenContext} from "../../contexts/UserTokenContext"
 
 function validateEmail(value) {
   let error;
@@ -24,6 +26,7 @@ function validatePassword(value) {
 
 export const LoginForm = (props) => {
   const [redirect, setRedirect] = useState(false);
+  const { setToken } = useUserTokenContext();
 
   if (redirect) {
     return <Navigate to="/" />;
@@ -37,8 +40,14 @@ export const LoginForm = (props) => {
             email: "",
             password: "",
           }}
+          onSubmit={async (values) => {
+            const token= await loginService(values);
+            console.log(token) 
+            setToken(token) 
+            setRedirect(true)
+          }}
         >
-          {({ errors }) => (
+          {({ errors, isSubmitting }) => (
             <Form>
               <label htmlFor="email">Email</label>
               <Field
@@ -58,7 +67,7 @@ export const LoginForm = (props) => {
               />
               {errors.password}
 
-              <button type={"submit"}>Login</button>
+              <button type={"submit"} disabled= {isSubmitting}>Login</button>
             </Form>
           )}
         </Formik>
