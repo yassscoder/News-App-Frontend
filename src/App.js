@@ -5,6 +5,7 @@ import { PostsByTopic } from "./pages/PostsByTopic/PostsByTopic";
 import { PostsByDate } from "./pages/PostsBySpecificDate/PostsBySpecificDate";
 import { PostForm } from "./pages/PostForm/PostForm";
 import {LoginForm} from "./pages/LoginForm/LoginForm"
+import { RegisterUserForm } from "./pages/RegisterUserForm/RegisterUserForm";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/filterByDate" element={<PostsByDate />} />
           <Route path="/CreatePost" element={<PostForm />} />
           <Route path="/Login" element={<LoginForm />} />
+          <Route path="/Register" element={<RegisterUserForm />} />
         </Routes>
       </div>
     </BrowserRouter>
