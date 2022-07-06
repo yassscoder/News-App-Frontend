@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { Navigate } from "react-router-dom";
 import "./Postform.css";
+import { useUserTokenContext } from "../../contexts/UserTokenContext";
+import { createPostService } from "../../services/createPostService";
 
 const topics = ["sports", "politics", "finances"];
 
@@ -46,9 +48,12 @@ function validateTopic(value) {
   return error;
 }
 
-export const PostForm = (props) => {
-  const [redirect, setRedirect] = useState(false);
 
+export const PostForm = (props) => {
+  const userContext= useUserTokenContext(); 
+  const {token} = userContext;
+  
+  const [redirect, setRedirect] = useState(false);
   if (redirect) {
     return <Navigate to="/" />;
   }
@@ -59,12 +64,18 @@ export const PostForm = (props) => {
         <Formik
           initialValues={{
             title: "",
-            openingLine: "",
+            opening_line: "",
             text: "",
             topic: "",
           }}
+          onSubmit={async (values) => {
+            values.token= token;
+            await createPostService(values);
+             setRedirect(true)
+          }}
         >
-          {({ errors }) => (
+      
+          {({ errors, isSubmitting  }) => (
             <Form>
               <label htmlFor="title">Title</label>
               <Field
@@ -75,10 +86,10 @@ export const PostForm = (props) => {
               />
               {errors.title}
 
-              <label htmlFor="openingLine">Opening line</label>
+              <label htmlFor="opening_line">Opening line</label>
               <Field
-                id="openingLine"
-                name="openingLine"
+                id="opening_line"
+                name="opening_line"
                 placeholder="Write an opening line."
                 validate={validateOpeningLine}
               />
@@ -107,7 +118,7 @@ export const PostForm = (props) => {
                  name="photo"
                  type="file"/>
                  
-              <button type={"submit"}>Create post</button>
+              <button type={"submit"} disabled= {isSubmitting}>Create post</button>
             </Form>
           )}
         </Formik>
