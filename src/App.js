@@ -6,6 +6,7 @@ import { PostsByDate } from "./pages/PostsBySpecificDate/PostsBySpecificDate";
 import { PostForm } from "./pages/PostForm/PostForm";
 import {LoginForm} from "./pages/LoginForm/LoginForm"
 import { RegisterUserForm } from "./pages/RegisterUserForm/RegisterUserForm";
+import { UserPosts } from "./pages/UserPosts/UserPosts";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/CreatePost" element={<PostForm />} />
           <Route path="/Login" element={<LoginForm />} />
           <Route path="/Register" element={<RegisterUserForm />} />
+          <Route path="/myPosts/:id" element={<UserPosts />} />
         </Routes>
       </div>
     </BrowserRouter>
