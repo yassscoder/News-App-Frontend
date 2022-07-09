@@ -1,64 +1,22 @@
-import { getPostsByUser } from "../../API";
-import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
-import { useFetch } from "../../hooks/useFetch";
-import {PostListOwn} from "../../components/PostListOwn/PostListOwn"
+import {getPostsByUser} from "../../API";
+import {ErrorMessage} from "../../components/ErrorMessage/ErrorMessage";
 import {useUserTokenContext} from "../../contexts/UserTokenContext";
-import {useEffect, useRef, useState} from "react"
 import {useFetchWithDependencyArray} from "../../hooks/useFetchWithDependencyArray";
+import {PostList} from "../../components/PostList/PostList";
 
 export const UserPosts = () => {
-  const {idUser}= useUserTokenContext()
+    const {idUser} = useUserTokenContext()
+    const postsByUserEndpoint = getPostsByUser(idUser);
 
-  const [id, setId]= useState(null);
+    const {data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint, [idUser]);
 
-  setId(idUser)
-  const postsByUserEndpoint = getPostsByUser(id);
-  const { data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint,[id]);
-
-  //const { idUser } = useParams(); /*id user lo tengo en el context,no? */
-
-  //const {user}  = useUserTokenContext();
-
-
-  //const {id} = user;
- // console.log(id)
-
-/*  const [postsEndpoint, setPostsEndpoing]= useState("")
-  const prevPostsEndpoint = useRef();
-  useEffect(() => {
-
-    if(idUser === null){
-      console.log("vuelve a renderizar")
-    }else {
-      prevPostsEndpoint.current= getPostsByUser(idUser)
-      setPostsEndpoing(prevPostsEndpoint)
-
-      // const { data: posts, error } = useFetch(postsByUserEndpoint);
-      const { data: posts, error } = useFetch(postsEndpoint);
-
-      if (error) {
-        return <ErrorMessage error={error} />;
-      }
-      if (error) {
-        return <ErrorMessage error={error} />;
-      }
-      /!*console.log("idUser" + idUser)
-      postsByUserEndpoint = getPostsByUser(idUser);
-      console.log(postsByUserEndpoint)
-      return postsByUserEndpoint*!/
+    if (error) {
+        return <ErrorMessage error={error}/>;
     }
-
-  },[idUser, postsEndpoint]);*/
-
-  if (error) {
-    return <ErrorMessage error={error} />;
-  }
-
-
-  return (
-    <section>
-      <h2>My posts</h2>
-      {/*{posts && <PostListOwn posts={posts}/>}*/}
-    </section>
-  );
+    return (
+        <section>
+            <h2>My posts</h2>
+            {posts && <PostList posts={posts}/>}
+        </section>
+    );
 };

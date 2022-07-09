@@ -1,6 +1,6 @@
 export const getDataUserService = async (token) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BASE_URL_USERS}/get/profile`,
+    `${process.env.REACT_APP_BASE_URL_USERS}/get/myprofile`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
