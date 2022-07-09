@@ -29,13 +29,13 @@ export const UserTokenContextProvider = ({ children }) => {
       getUserInfo();
     }
   }, [token, setToken, idUser, setIdUser]);
-  const logout = () => {
+  const logOut = () => {
     setToken("");
     setUser(null);
     setIdUser(null)
   };
   return (
-    <UserTokenContext.Provider value={{ idUser, user,token, setToken, logout }}>
+    <UserTokenContext.Provider value={{ idUser, user,token, setToken, logOut }}>
       {children}
     </UserTokenContext.Provider>
   );
