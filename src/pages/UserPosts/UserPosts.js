@@ -9,7 +9,6 @@ export const UserPosts = () => {
     const postsByUserEndpoint = getPostsByUser(idUser);
 
     const {data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint, [idUser]);
-
     if (error) {
         return <ErrorMessage error={error}/>;
     }

@@ -1,5 +1,20 @@
+import {Button} from "../Button/Button";
+import {deletePostService} from "../../services/deletePostService";
+import {useState} from "react";
+import {useUserTokenContext} from "../../contexts/UserTokenContext";
+
 export const PostCard = ({ post }) => {
-  const {title, topic, opening_line, author, text, photo, total_votes,creation_date } = post;
+  const [error, setError]= useState()
+  const {token}= useUserTokenContext()
+  const {id,title, topic, opening_line, author, text, photo, total_votes,creation_date } = post;
+  const deletePost = async (idPost) => {
+    try {
+      await deletePostService(token, idPost)
+
+    }catch (error){
+      setError(error.message)
+    }
+  }
   const options = {
     weekday: "long",
     year: "numeric",
@@ -25,8 +40,14 @@ export const PostCard = ({ post }) => {
         <p>{text}</p>
         <p>{localeDate}</p>
         <h3>{author}</h3>
+        <Button onClick={(e) => {
+          console.log(e)}}>Edit</Button>
+        <Button onClick={() => {
+          console.log("delete post");
+        deletePost(id)}}>Delete</Button>
       </header>
       <span>total votes: {total_votes}</span>
+
     </section>
   );
 };

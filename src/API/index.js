@@ -8,4 +8,5 @@ export const getPostsByTopic = (topic) =>
   `${process.env.REACT_APP_URL_DATE}/${selectedDate}`;
 
   export const getPostsByUser = (id)=> `${process.env.REACT_APP_BASE_URL_POSTS}/allPosts/${id}`;
+  export const getDataProfileUser=()=>`${process.env.REACT_APP_BASE_URL_USERS}/get/myprofile`;
 
