@@ -13,7 +13,7 @@ export const PostsByTopic = () => {
 
   return (
     <section className="posts">
-      <h2>Latest posts about topic </h2>
+      <h2> Latest posts about topic </h2>
       <TopicSelector setTopic={setTopic} />
       {posts && <PostList posts={posts} />}
       {error && <ErrorMessage error={error} />}

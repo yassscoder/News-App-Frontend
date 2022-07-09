@@ -3,23 +3,30 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LatestPosts } from "./pages/LatestPosts/LatestPosts";
 import { PostsByTopic } from "./pages/PostsByTopic/PostsByTopic";
 import { PostsByDate } from "./pages/PostsBySpecificDate/PostsBySpecificDate";
-import { PostForm } from "./pages/PostForm/PostForm";
-import {LoginForm} from "./pages/LoginForm/LoginForm"
-import { RegisterUserForm } from "./pages/RegisterUserForm/RegisterUserForm";
 import { UserPosts } from "./pages/UserPosts/UserPosts";
+import {Login} from "./pages/Login/Login";
+import {PostForm} from "./pages/PostForm/PostForm";
+import {Register} from "./pages/Register/Register";
+import {EmailVerification} from "./pages/EmailVerification/EmailVerification";
+
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<LatestPosts />} />
+          <Route path="/home" element={<LatestPosts />} />
           <Route path="/filterByTopic" element={<PostsByTopic />} />
           <Route path="/filterByDate" element={<PostsByDate />} />
-          <Route path="/CreatePost" element={<PostForm />} />
-          <Route path="/Login" element={<LoginForm />} />
-          <Route path="/Register" element={<RegisterUserForm />} />
-          <Route path="/myPosts/:id" element={<UserPosts />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/createPost" element={<PostForm />} />
+          <Route path="/myPosts" element={<UserPosts />} />
+          <Route path="/validateEmail" element={<EmailVerification />} />
+          <Route path="*" element={<p>There's nothing here: 404!</p>} />
+          {/*  <Route path="/myProfile"/> */}
+      
         </Routes>
       </div>
     </BrowserRouter>

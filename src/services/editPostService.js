@@ -1,17 +1,17 @@
-export const getDataUserService = async (token) => {
+export const editPostService = async (token, idPost) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BASE_URL_USERS}/get/profile`,
+    `${process.env.REACT_APP_BASE_URL_POSTS}/${idPost}`,
     {
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }
   );
   const body = await response.json();
-
+  console.log("body response");
+  console.log(body);
   if (!response.ok) {
-    console.log("error data user service")
     throw new Error(body.message);
   }
-  return body.data;
 };
