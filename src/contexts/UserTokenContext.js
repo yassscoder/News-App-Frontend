@@ -1,46 +1,40 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {createContext, useContext, useState, useEffect} from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { getDataUserService } from "../services/getDataUserService";
+import {getDataUserService} from "../services/getDataUserService";
 
 export const UserTokenContext = createContext();
 
-export const UserTokenContextProvider = ({ children }) => {
-  const { data: token, setData: setToken } = useLocalStorage("token", "");
-  const [user, setUser] = useState(null);
-  const [idUser, setIdUser] = useState(null)
+export const UserTokenContextProvider = ({children}) => {
+    const {data: token, setData: setToken} = useLocalStorage("token", "");
+    const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      try {
-        const user = await getDataUserService(token);
-        console.log(user)
-        setUser(user);
-        const {id}= user;
-        console.log(id)
-        setIdUser(id)
-      } catch (error) {
-        console.error("error en el contexto")
+    useEffect(() => {
+        const getUserInfo = async () => {
+            try {
+                const user = await getDataUserService(token);
+                console.log(user)
+                setUser(user);
+            } catch (error) {
+                console.error("error en el contexto")
+                setToken("");
+                setUser({});
+            }
+        };
+        if (token) {
+            getUserInfo();
+        }
+    }, [token, setToken]);
+    const logOut = () => {
         setToken("");
-        setUser(null);
-        setIdUser(null)
-      }
+        setUser({});
     };
-    if (token) {
-      getUserInfo();
-    }
-  }, [token, setToken, idUser, setIdUser]);
-  const logOut = () => {
-    setToken("");
-    setUser(null);
-    setIdUser(null)
-  };
-  return (
-    <UserTokenContext.Provider value={{ idUser, user,token, setToken, logOut }}>
-      {children}
-    </UserTokenContext.Provider>
-  );
+    return (
+        <UserTokenContext.Provider value={{user, token, setToken, logOut}}>
+            {children}
+        </UserTokenContext.Provider>
+    );
 };
 
 export const useUserTokenContext = () => {
-  return useContext(UserTokenContext);
+    return useContext(UserTokenContext);
 };

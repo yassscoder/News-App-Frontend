@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 export const PostCard = ({post}) => {
 
     const [error, setError] = useState()
-    const {token, idUser} = useUserTokenContext()
+    const {token} = useUserTokenContext()
     const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date} = post;
     const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export const PostCard = ({post}) => {
                 <p>{localeDate}</p>
                 <h3>{author}</h3>
                 {(token) && <Button onClick={(e) => {
-                    console.log(e)
+                    console.log("edit post")
                 }}>Edit</Button>}
 
                 {(token) && <Button onClick={() => {
