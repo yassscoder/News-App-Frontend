@@ -4,18 +4,12 @@ import {useUserTokenContext} from "../../contexts/UserTokenContext";
 import {useFetchWithDependencyArray} from "../../hooks/useFetchWithDependencyArray";
 import {PostList} from "../../components/PostList/PostList";
 
-
 export const UserPosts = () => {
-    const {idUser} = useUserTokenContext()
-    const postsByUserEndpoint = getPostsByUser(idUser);
+    const {user} = useUserTokenContext()
+    const {id} = user;
+    const postsByUserEndpoint = getPostsByUser(id);
 
-
-   /* const deletePost = (id) => { /!*useEffect??*!/
-        setPosts(allPosts.filter((post) => post.id !== id));
-        console.log(allPosts)
-    };*/
-
-    const {data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint, [idUser]);
+    const {data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint, [id]);
     if (error) {
         return <ErrorMessage error={error}/>;
     }
@@ -23,9 +17,9 @@ export const UserPosts = () => {
     return (
         <section>
             <h2>My posts</h2>
-            {idUser && (
+            {id && (
                 <>
-            {posts && <PostList posts={posts} />}
+                    {posts && <PostList posts={posts}/>}
                 </>
             )}
         </section>
