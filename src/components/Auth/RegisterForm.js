@@ -36,7 +36,7 @@ function validatePassword(value) {
 }
 function validateBio(value){
     let error;
-    if (value && !/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{10,200}$/i.test(value)) {
+    if (value && (!/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{10,200}$/i.test(value))) {
         error = 'Nick name must be between 10 and 200 characters';
     }
     return error;
@@ -110,7 +110,7 @@ export const RegisterForm = (props) => {
                                 placeholder="Enter your nickname"
                                 validate={validateNick}
                             />
-                            {errors.nickname}
+                            {errors.nick_name}
                             <label htmlFor="email">Email</label>
                             <Field
                                 id="email"

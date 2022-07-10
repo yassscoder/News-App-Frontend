@@ -97,7 +97,7 @@ export const NewPostForm = (props) => {
                 placeholder="Write an opening line."
                 validate={validateOpeningLine}
               />
-              {errors.openingLine}
+              {errors.opening_line}
 
               <label htmlFor="text">Text</label>
               <Field
