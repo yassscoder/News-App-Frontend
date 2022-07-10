@@ -9,6 +9,7 @@ export const PostCard = ({post}) => {
     const [error, setError] = useState()
     const {token} = useUserTokenContext()
     const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date} = post;
+    console.log(photo)
     const navigate = useNavigate();
 
     const removePost = async (id) => {
@@ -39,7 +40,7 @@ export const PostCard = ({post}) => {
             <header>
                 <p>{topic}</p>
                 <img
-                    src={`${process.env.REACT_APP_BASE_URL_IMAGES}/${photo}`}
+                    src={`${process.env.REACT_APP_BASE_URL_IMAGES}/upload-photos-posts/${photo}`}
                     alt={title}
                 />
                 <h2>{title}</h2>

@@ -29,8 +29,6 @@ function App() {
           <Route path="/validateEmail" element={<EmailVerification />} />
           <Route path="/myProfile" element={<UserProfile/>}/>
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
-          {/*  <Route path="/myProfile"/> */}
-      
         </Routes>
       </div>
     </BrowserRouter>
