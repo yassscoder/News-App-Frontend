@@ -10,6 +10,7 @@ import {Register} from "./pages/Register/Register";
 import {EmailVerification} from "./pages/EmailVerification/EmailVerification";
 import {Logout} from "./pages/Logout/Logout";
 import {UserProfile} from "./pages/UserProfile/UserProfile";
+import {EditPost} from "./pages/EditPost/EditPost";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
           <Route path="/logout" element={<Logout />} />
           <Route path="/createPost" element={<PostForm />} />
+          <Route path="/edit/:id" element={<EditPost/>}/>
           <Route path="/myPosts" element={<UserPosts />} />
           <Route path="/validateEmail" element={<EmailVerification />} />
           <Route path="/myProfile" element={<UserProfile/>}/>

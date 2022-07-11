@@ -3,27 +3,30 @@ import {deletePostService} from "../../services/deletePostService";
 import {useState} from "react";
 import {useUserTokenContext} from "../../contexts/UserTokenContext";
 import {useNavigate} from "react-router-dom";
+import {editPostService} from "../../services/editPostService";
 
 export const PostCard = ({post}) => {
 
     const [error, setError] = useState()
     const {token, user} = useUserTokenContext()
     const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date, user_id} = post;
-    console.log(post)
+
     const navigate = useNavigate();
 
     const removePost = async (id) => {
         try {
             const response = await deletePostService(token, id)
             navigate(0);
-            /*quiero que al borrarse un post, recargue userPosts*/
-            /*lifting state up?? */
+
 
         } catch (error) {
             setError(error.message)
         }
     }
 
+    const editPost = (id) => {
+        navigate(`/edit/${id}`)
+    }
     const options = {
         weekday: "long",
         year: "numeric",
@@ -49,12 +52,11 @@ export const PostCard = ({post}) => {
                 <p>{text}</p>
                 <p>{localeDate}</p>
                 <h3>{author}</h3>
-                {(user_id === user.id) && <Button onClick={(e) => {
-                    console.log("edit post")
+                {(user_id === user.id) && <Button onClick={() => {
+                    editPost(id)
                 }}>Edit</Button>}
 
                 {(user_id === user.id) && <Button onClick={() => {
-                    console.log("delete post");
                     removePost(id)
                 }}>Delete</Button>}
             </header>

@@ -9,4 +9,4 @@ export const getPostsByTopic = (topic) =>
 
   export const getPostsByUser = (id)=> `${process.env.REACT_APP_BASE_URL_POSTS}/allPosts/${id}`;
   export const getDataProfileUser=()=>`${process.env.REACT_APP_BASE_URL_USERS}/get/myprofile`;
-
+  export const getPostById = (id)=> `${process.env.REACT_APP_BASE_URL_POSTS}/singlePost/${id}`
