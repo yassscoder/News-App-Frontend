@@ -1,6 +1,6 @@
-import { Formik, Field, Form } from "formik";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {Formik, Field, Form} from "formik";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 import {useUserTokenContext} from "../../contexts/UserTokenContext"
 import {ErrorMessage} from "../ErrorMessage/ErrorMessage";
 import {registerUserService} from "../../services/registerUserService";
@@ -34,7 +34,8 @@ function validatePassword(value) {
     }
     return error;
 }
-function validateBio(value){
+
+function validateBio(value) {
     let error;
     if (value && (!/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{10,200}$/i.test(value))) {
         error = 'Nick name must be between 10 and 200 characters';
@@ -42,67 +43,46 @@ function validateBio(value){
     return error;
 }
 
-export const RegisterForm = (props) => {
+export const RegisterForm = () => {
 
     const navigate = useNavigate();
     const [error, setError] = useState("");
 
-
-
-
-/*    if (bio) formData.append("bio", bio);
-    if (image) {
-        formData.append("picture", image);
-    }
-    console.log(formData);
-    console.log(formData.name);*/
-    return (
-        <div className="container__form">
+    return (<div className="container__form">
             <div className="post__form">
                 <Formik
                     initialValues={{
-                        email: "",
-                        password: "",
-                        nick_name: "",
-                        bio: "",
-                        avatar: "",
+                        email: "", password: "", nick_name: "", bio: "", avatar: "",
                     }}
 
                     onSubmit={async (values) => {
                         const rebuildData = (values) => {
-                            console.log(values.email)
+
                             let formData = new FormData();
-                            formData.append("email", values.email);
-                            console.log(formData.get("email"))
-                            formData.append("password", values.password);
                             formData.append("nick_name", values.nick_name);
-                            if (values.bio!=="") formData.append("bio", values.bio);
-                            if (values.avatar!== "") {
+                            formData.append("email", values.email);
+                            formData.append("password", values.password);
+                            if (values.bio !== "") {
+                                formData.append("bio", values.bio)
+                            }
+                            if (values.avatar !== "") {
                                 formData.append("avatar", values.avatar);
                             }
-                            /*Object.keys(values).forEach(key => {
-                                formData.append(key, values[key]);
-                            });*/
-                            console.log(formData.get("nick_name"))
-
                             return formData;
                         };
-                        const data = rebuildData(values)
-                        console.log(data.get("nick_name"))
-                        console.log(data.get("avatar"))
-                        console.log(data.get("bio"))
-                        try{
-                          //  await registerUserService(data);
+                        const data = rebuildData(values);
+
+                        try {
+                            await registerUserService({data});
+
                             console.log("redirigir a validar email")
-                           // navigate("/validateEmail");
-                        }catch(error){
+                            // navigate("/validateEmail");
+                        } catch (error) {
                             setError(error.message)
                         }
                     }}
                 >
-
-                    {({ errors, isSubmitting , values, setFieldValue}) => (
-                        <Form>
+                    {({errors, isSubmitting, values, setFieldValue}) => (<Form>
                             <label htmlFor="nick_name">Nick name</label>
                             <Field
                                 id="nick_name"
@@ -111,6 +91,7 @@ export const RegisterForm = (props) => {
                                 validate={validateNick}
                             />
                             {errors.nick_name}
+
                             <label htmlFor="email">Email</label>
                             <Field
                                 id="email"
@@ -139,24 +120,21 @@ export const RegisterForm = (props) => {
                             {errors.bio}
 
                             <label htmlFor="avatar">Avatar</label>
-                            <Field
+                            <input
                                 type="file"
+                                id="avatar"
                                 name="avatar"
+
                                 onChange={(event) => {
-                                    setFieldValue('avatar', event.currentTarget.files[0]);
+                                    setFieldValue('avatar', event.target.files[0]);
                                 }}
-                               /* placeholder="Things about you"
-                                validate={validateBio}*/
                             />
-                            {/*{errors.bio}*/}
-                            <button type={"submit"}>Create profile</button>
-                        </Form>
-                    )}
+                            <button type={"submit"} disabled={isSubmitting}>Create profile</button>
+                        </Form>)}
                 </Formik>
-                {error && <ErrorMessage error={error} />}
+                {error && <ErrorMessage error={error}/>}
             </div>
-        </div>
-    );
+        </div>);
 };
 
-/*{({ errors, isSubmitting , values, setFieldValue}) => (* en linea 103/ }*/
+

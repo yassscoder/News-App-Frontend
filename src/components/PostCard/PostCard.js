@@ -9,7 +9,7 @@ export const PostCard = ({post}) => {
     const [error, setError] = useState()
     const {token} = useUserTokenContext()
     const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date} = post;
-    console.log(photo)
+    console.log(total_votes)
     const navigate = useNavigate();
 
     const removePost = async (id) => {
@@ -23,6 +23,7 @@ export const PostCard = ({post}) => {
             setError(error.message)
         }
     }
+
     const options = {
         weekday: "long",
         year: "numeric",

@@ -23,6 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 .idea/
 .env
-src/services/registerUserService.js
 src/hooks/useUser.js
 src/hooks/usePost.js
