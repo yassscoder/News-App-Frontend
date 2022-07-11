@@ -7,9 +7,9 @@ import {useNavigate} from "react-router-dom";
 export const PostCard = ({post}) => {
 
     const [error, setError] = useState()
-    const {token} = useUserTokenContext()
-    const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date} = post;
-    console.log(total_votes)
+    const {token, user} = useUserTokenContext()
+    const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date, user_id} = post;
+    console.log(post)
     const navigate = useNavigate();
 
     const removePost = async (id) => {
@@ -49,11 +49,11 @@ export const PostCard = ({post}) => {
                 <p>{text}</p>
                 <p>{localeDate}</p>
                 <h3>{author}</h3>
-                {(token) && <Button onClick={(e) => {
+                {(user_id === user.id) && <Button onClick={(e) => {
                     console.log("edit post")
                 }}>Edit</Button>}
 
-                {(token) && <Button onClick={() => {
+                {(user_id === user.id) && <Button onClick={() => {
                     console.log("delete post");
                     removePost(id)
                 }}>Delete</Button>}
