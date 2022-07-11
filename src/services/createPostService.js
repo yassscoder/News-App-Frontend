@@ -1,12 +1,10 @@
-export const createPostService = async ({ title, opening_line, text, topic, token}) => {
-   
+export const createPostService = async ({ data, token}) => {
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL_POSTS}/allPosts`,
       {
         method: "POST",
-        body: JSON.stringify({ title, opening_line, text, topic}),
+        body: data,
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
       }
