@@ -21,6 +21,14 @@ export const Header = () => {
                 >
                     Login
                 </Button>}
+                {!token && <Button
+                    className="btn__header"
+                    onClick={() => {
+                        navigate("/register")
+                    }}
+                >
+                    Register
+                </Button>}
                 {token && (
                     <PicAvatar user={user}/>
                 )}
