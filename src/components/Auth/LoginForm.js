@@ -4,6 +4,7 @@ import { useState } from "react";
 import { loginService } from "../../services/loginService";
 import {useUserTokenContext} from "../../contexts/UserTokenContext"
 import {ErrorMessage} from "../ErrorMessage/ErrorMessage";
+import Swal from "sweetalert2";
 
 function validateEmail(value) {
   let error;
@@ -41,7 +42,14 @@ export const LoginForm = (props) => {
           onSubmit={async (values) => {
             try{
             const token= await loginService(values);
-            setToken(token) 
+            setToken(token)
+                   Swal.fire({
+                          title: 'Correct login',
+                          showConfirmButton: false,
+                          icon: 'success',
+                          timer: '2000'
+                      })
+
             navigate("/home");
           }catch(error){
             setError(error.message)

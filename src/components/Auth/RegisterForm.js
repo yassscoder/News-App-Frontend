@@ -4,6 +4,7 @@ import {useState} from "react";
 import {useUserTokenContext} from "../../contexts/UserTokenContext"
 import {ErrorMessage} from "../ErrorMessage/ErrorMessage";
 import {registerUserService} from "../../services/registerUserService";
+import Swal from "sweetalert2";
 
 function validateNick(value) {
     let error;
@@ -76,7 +77,13 @@ export const RegisterForm = () => {
                             await registerUserService({data});
 
                             console.log("redirigir a validar email")
-                            // navigate("/validateEmail");
+                            Swal.fire({
+                                text: 'Check your email to verify your account',
+                                icon: 'success',
+                                html: `<a href="https://www.google.com/gmail/" target="_blank">Activate your account now!</a>`
+
+                            })
+                             navigate("/validateEmail");
                         } catch (error) {
                             setError(error.message)
                         }
