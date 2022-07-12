@@ -11,12 +11,15 @@ import {EmailVerification} from "./pages/EmailVerification/EmailVerification";
 import {Logout} from "./pages/Logout/Logout";
 import {UserProfile} from "./pages/UserProfile/UserProfile";
 import {EditPost} from "./pages/EditPost/EditPost";
+import {Header} from "./components/Header/Header";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <>
+        <Header />
+        <main>
         <Routes>
           <Route path="/home" element={<LatestPosts />} />
           <Route path="/filterByTopic" element={<PostsByTopic />} />
@@ -32,7 +35,8 @@ function App() {
           <Route path="/myProfile" element={<UserProfile/>}/>
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Routes>
-      </div>
+        </main>
+      </>
     </BrowserRouter>
   );
 }
