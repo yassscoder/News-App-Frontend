@@ -1,0 +1,10 @@
+button {
+    border: thin solid #FF9100;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    padding: 0.5rem 1.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: rgba(0, 0, 0, 0.25) 3px 4px 10px;
+}
