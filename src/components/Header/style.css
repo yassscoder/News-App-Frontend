@@ -1,0 +1,51 @@
+.header {
+  background-color: #ff9100;
+  background-image: url("../../assets/img/logo.svg");
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  padding: 1rem 1rem 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-bottom: thin solid rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.25) 3px 4px 10px;
+}
+
+.header > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn__header {
+  margin: 2rem 0 0.8rem;
+  justify-self: flex-end;
+  border: thin solid #ffffff;
+  background-color: #ff9100;
+  padding: 0.3rem 0.6rem;
+  font-weight: 400;
+}
+
+.btn__header:hover {
+  color: #ffffff;
+}
+
+.header > nav {
+  display: flex;
+  justify-content: space-between;
+  /*align-items: center;*/
+  padding: 0.6rem 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+a {
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0 0.5rem 0 0;
+  font-weight: 400;
+  padding: 0 0 0.5rem;
+}
+
+a:hover {
+  color: #000000;
+}
