@@ -26,7 +26,7 @@ function validatePassword(value) {
   return error;
 }
 
-export const LoginForm = (props) => {
+export const LoginForm = () => {
 
  const navigate = useNavigate();
  const [error, setError] = useState("");
@@ -50,7 +50,7 @@ export const LoginForm = (props) => {
                           timer: '2000'
                       })
 
-            navigate("/home");
+            navigate("/");
           }catch(error){
             setError(error.message)
           }

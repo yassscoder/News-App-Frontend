@@ -12,6 +12,7 @@ import {Logout} from "./pages/Logout/Logout";
 import {UserProfile} from "./pages/UserProfile/UserProfile";
 import {EditPost} from "./pages/EditPost/EditPost";
 import {Header} from "./components/Header/Header";
+import {NotFound} from "./pages/NotFound/NotFound";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Header />
         <main>
         <Routes>
-          <Route path="/home" element={<LatestPosts />} />
+          <Route path="/" element={<LatestPosts />} />
           <Route path="/filterByTopic" element={<PostsByTopic />} />
           <Route path="/filterByDate" element={<PostsByDate />} />
           <Route path="/login" element={<Login/>} />
@@ -33,7 +34,7 @@ function App() {
           <Route path="/myPosts" element={<UserPosts />} />
           <Route path="/validateEmail" element={<EmailVerification />} />
           <Route path="/myProfile" element={<UserProfile/>}/>
-          <Route path="*" element={<p>There's nothing here: 404!</p>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
         </main>
       </>

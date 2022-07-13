@@ -25,3 +25,6 @@ yarn-error.log*
 .env
 src/hooks/useUser.js
 src/hooks/usePost.js
+src/services/voteEntryService.js
+src/services/removeVoteEntryService.js
+testingvotes.js

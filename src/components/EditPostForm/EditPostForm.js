@@ -87,7 +87,7 @@ export const EditPostForm = ({post}) => {
                     const data = rebuildData(values);
                     try {
                         await editPostService(token, idPost, data);
-                        navigate("/home")
+                        navigate("/")
                     } catch (error) {
                         setError(error.message)
                     }

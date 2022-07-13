@@ -3,14 +3,13 @@ import {deletePostService} from "../../services/deletePostService";
 import {useState} from "react";
 import {useUserTokenContext} from "../../contexts/UserTokenContext";
 import {useNavigate} from "react-router-dom";
-import {editPostService} from "../../services/editPostService";
 
 export const PostCard = ({post}) => {
 
     const [error, setError] = useState()
     const {token, user} = useUserTokenContext()
     const {id, title, topic, opening_line, author, text, photo, total_votes, creation_date, user_id} = post;
-
+    const [votes, setVotes] = useState(total_votes);
     const navigate = useNavigate();
 
     const removePost = async (id) => {
@@ -60,7 +59,7 @@ export const PostCard = ({post}) => {
                     removePost(id)
                 }}>Delete</Button>}
             </header>
-            <span>total votes: {total_votes}</span>
+            <span>total votes: {votes}</span>
 
         </section>
     );

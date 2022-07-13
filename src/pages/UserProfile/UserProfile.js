@@ -7,7 +7,6 @@ export const UserProfile = () => {
     return (
         <section>
             <h2>My profile</h2>
-            <p>data user</p>
             <UserInfoCard user={user}/>
         </section>
     )

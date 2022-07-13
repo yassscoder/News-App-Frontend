@@ -12,7 +12,7 @@ function validateTitle(value) {
     let error;
     if (!value) {
         error = "Required field";
-    } else if (!/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{2,100}$/i.test(value)) {
+    } else if (!/^[-\w\s]{2,100}$/i.test(value)) {
         error = "Title must be between 2 and 100 characters.";
     }
     return error;
@@ -22,7 +22,7 @@ function validateOpeningLine(value) {
     let error;
     if (!value) {
         error = "Required field";
-    } else if (!/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{6,200}$/i.test(value)) {
+    } else if (!/^[-\w\s]{6,200}$/i.test(value)) {
         error = "Opening Line must be between 6 and 200 characters.";
     }
     return error;
@@ -32,7 +32,7 @@ function validateText(value) {
     let error;
     if (!value) {
         error = "Required field";
-    } else if (!/^[A-Za-zäÄëËïÏöÖüÜáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ.-\u00f1\u00d1]{6,500}$/i.test(value)) {
+    } else if (!/^[-\w\s]{6,500}$/i.test(value)) {
         error = "Title must be between 6 and 500 characters.";
     }
     return error;
@@ -79,7 +79,7 @@ export const NewPostForm = () => {
                         const data = rebuildData(values);
                         try {
                             await createPostService({data, token});
-                            navigate("/home")
+                            navigate("/")
                         } catch (error) {
                             setError(error.message)
                         }

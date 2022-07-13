@@ -1,7 +1,6 @@
 import {Formik, Field, Form} from "formik";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {useUserTokenContext} from "../../contexts/UserTokenContext"
 import {ErrorMessage} from "../ErrorMessage/ErrorMessage";
 import {registerUserService} from "../../services/registerUserService";
 import Swal from "sweetalert2";

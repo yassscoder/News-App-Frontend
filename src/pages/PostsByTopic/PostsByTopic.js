@@ -3,7 +3,8 @@ import { PostList } from "../../components/PostList/PostList";
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
 import { useState } from "react";
 import { useFetchWithDependencyArray } from "../../hooks/useFetchWithDependencyArray";
-import { TopicSelector } from "../../components/topicSelector.js/TopicSelector.js";
+import {TopicSelector} from "../../components/TopicSelector.js/TopicSelector";
+
 
 export const PostsByTopic = () => {
   const [selectedTopic, setTopic] = useState(null);

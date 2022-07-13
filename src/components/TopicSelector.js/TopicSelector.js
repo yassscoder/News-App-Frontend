@@ -7,7 +7,6 @@ const topics = [
 export const TopicSelector = ({ setTopic }) => {
   const handleTopic = (event) => {
     setTopic(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
