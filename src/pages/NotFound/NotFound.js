@@ -1,5 +1,12 @@
-export const NotFound = ()=>{
-    return (
-    <p>There's nothing here: 404!</p>
-    )
-}
+import errorNotFound from "../../assets/img/error-notFound.png";
+import "./style.css";
+
+export const NotFound = () => {
+  return (
+    <section class="notFound">
+      <h2>Not Found</h2>
+      <img src={errorNotFound} alt="Not Found" />
+    </section>
+  );
+};
+

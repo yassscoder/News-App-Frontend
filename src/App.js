@@ -12,6 +12,7 @@ import {Logout} from "./pages/Logout/Logout";
 import {UserProfile} from "./pages/UserProfile/UserProfile";
 import {EditPost} from "./pages/EditPost/EditPost";
 import {Header} from "./components/Header/Header";
+import {Footer} from "./components/Footer/Footer";
 import {NotFound} from "./pages/NotFound/NotFound";
 
 
@@ -30,13 +31,14 @@ function App() {
 
           <Route path="/logout" element={<Logout />} />
           <Route path="/createPost" element={<PostForm />} />
-          <Route path="/edit/:id" element={<EditPost/>}/>
+          <Route path="/edit/:id" element={<EditPost/>} />
           <Route path="/myPosts" element={<UserPosts />} />
           <Route path="/validateEmail" element={<EmailVerification />} />
-          <Route path="/myProfile" element={<UserProfile/>}/>
-          <Route path="*" element={<NotFound/>} />
+          <Route path="/myProfile" element={<UserProfile/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </main>
+        <Footer />
       </>
     </BrowserRouter>
   );

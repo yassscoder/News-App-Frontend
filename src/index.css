@@ -1,4 +1,4 @@
-/*@import "antd/dist/antd.css";*/
+@import "antd/dist/antd.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap");
 
 * {
@@ -19,17 +19,10 @@ img {
   grid-template-rows: 8rem 1fr 2rem;}
 
 main {
-  flex-grow: 1;
-  padding: 1.5rem 1.5rem 2rem;
+  padding: 1.5rem 2rem 2rem;
 }
-main > section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-}
-section h2 {
+section > h2 {
   font-size: 1.3rem;
   font-weight: 600;
   border-bottom: thin solid #ff9100;
@@ -38,10 +31,40 @@ section h2 {
   text-transform: capitalize;
 }
 
-p {
+section > div > h3 {
+  text-transform: uppercase;
   font-size: 0.9rem;
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: left;
+    margin: 0 0 0.2rem;
+}
+
+section > div > h4 {
+  color: #ff9100;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+  margin: 0 0 0.5rem;
+}
+
+section > div > p {
+  font-size: 0.85rem;
+  line-height: 1rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 0.8rem;
+  max-height: 3rem;
+}
+
+p {
   margin: 0;
 }
+
 ul {
   list-style: none;
 }
+
+
