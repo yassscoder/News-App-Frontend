@@ -11,8 +11,7 @@ export const Header = () => {
     const navigate = useNavigate()
     return (
         <header className="header">
-            <div>
-
+            <div className="buttons__bar">
                 {!token && <Button
                     className="btn__header"
                     onClick={() => {

@@ -16,7 +16,8 @@ img {
   min-height: 100vh;
   text-align: center;
   display: grid;
-  grid-template-rows: 8rem 1fr 2rem;}
+  grid-template-rows: 7rem 1fr 2rem;
+}  
 
 main {
   padding: 1.5rem 2rem 2rem;
@@ -37,7 +38,7 @@ section > div > h3 {
     line-height: 1.2;
     font-weight: 700;
     text-align: left;
-    margin: 0 0 0.2rem;
+    margin: 0 0 0.3rem;
 }
 
 section > div > h4 {
@@ -47,16 +48,6 @@ section > div > h4 {
   font-size: 0.7rem;
   line-height: 0.9rem;
   margin: 0 0 0.5rem;
-}
-
-section > div > p {
-  font-size: 0.85rem;
-  line-height: 1rem;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0 0 0.8rem;
-  max-height: 3rem;
 }
 
 p {
