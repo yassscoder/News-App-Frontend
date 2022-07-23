@@ -1,11 +1,21 @@
-//import { Button } from "../Button/Button";
 import { deletePostService } from "../../services/deletePostService";
 import { useState } from "react";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Tooltip } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  LikeOutlined,
+  DislikeOutlined,
+} from "@ant-design/icons";
 import "./style.css";
+import {
+  removeVotePostService,
+  switchVote,
+  votePostService,
+} from "../../services/voteService";
+import { useCheckVote } from "../../hooks/useCheckVote";
 
 export const PostCard = ({ post }) => {
   const [error, setError] = useState();
@@ -21,13 +31,16 @@ export const PostCard = ({ post }) => {
     total_votes,
     creation_date,
     user_id,
+    avatar: authorAvatar
   } = post;
+ 
   const [votes, setVotes] = useState(total_votes);
+  const { currentVote, setCurrentVote } = useCheckVote(id, token);
   const navigate = useNavigate();
 
   const removePost = async (id) => {
     try {
-      const response = await deletePostService(token, id);
+      await deletePostService(token, id);
       navigate(0);
     } catch (error) {
       setError(error.message);
@@ -37,6 +50,32 @@ export const PostCard = ({ post }) => {
   const editPost = (id) => {
     navigate(`/edit/${id}`);
   };
+
+  const firstVote = async (id, myVote, token) => {
+    try {
+      const response = await votePostService(id, myVote, token);
+      return response.updatedVotes;
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const updateVote = async (id, token, myVote) => {
+    try {
+      const response = await switchVote(id, myVote, token);
+      return response.updatedVotes;
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const removeVote = async (id, token) => {
+    try {
+      const response = await removeVotePostService(id, token);
+      return response.updatedVotes;
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   const options = {
     year: "numeric",
     month: "long",
@@ -72,20 +111,20 @@ export const PostCard = ({ post }) => {
         <div>
           <img
             className="postCard__avatar"
-            //src={`${process.env.REACT_APP_BASE_URL_IMAGES}/${avatar}`}
-            src={`http://localhost:3000/default-user-avatar.jpg`}
+            src={`${process.env.REACT_APP_BASE_URL_IMAGES}/upload-avatar-users/${authorAvatar}`}
             alt={author}
           />
           <p className="postCard__author">{author}</p>
         </div>
 
         <div>
-        
-          <p className="postCard__votes--text" numberOfLines={1}>{total_votes}</p>
+          <p className="postCard__votes--text" numberoflines={1}>
+            {votes}
+          </p>
           <p className="postCard__votes--title">votes</p>
         </div>
       </div>
-      
+
       <div className="postCard__edit--buttons">
         {user_id === user.id && (
           <Tooltip title="Edit Post">
@@ -113,6 +152,64 @@ export const PostCard = ({ post }) => {
               }}
             >
               Delete
+            </Button>
+          </Tooltip>
+        )}
+      </div>
+      <div className="postCard__edit--buttons">
+        {token && user_id !== user.id && (
+          <Tooltip title="Positive vote">
+            <Button
+              className="postCard__btn"
+              shape="default"
+              onClick={async () => {
+                const myVote = {
+                  is_vote_positive: "true",
+                };
+                if (currentVote === 0) {
+                  const updatedVotes = await updateVote({ id, token, myVote });
+                  setCurrentVote(1);
+                  setVotes(updatedVotes);
+                } else if (currentVote === 1) {
+                  const updatedVotes = await removeVote({ id, token });
+                  setCurrentVote(null);
+                  setVotes(updatedVotes);
+                } else if (currentVote === null) {
+                  const updatedVotes = await firstVote({ id, myVote, token });
+                  setCurrentVote(1);
+                  setVotes(updatedVotes);
+                }
+              }}
+            >
+              <LikeOutlined className="like-icon" />
+            </Button>
+          </Tooltip>
+        )}
+        {token && user_id !== user.id && (
+          <Tooltip title="Negative vote">
+            <Button
+              className="postCard__btn"
+              shape="default"
+              onClick={async () => {
+                const myVote = {
+                  is_vote_positive: "false",
+                };
+                if (currentVote === 1) {
+                  const updatedVotes = await updateVote({ id, token, myVote });
+                  setVotes(updatedVotes);
+                  setCurrentVote(0);
+                } else if (currentVote === 0) {
+                  const updatedVotes = await removeVote({ id, token });
+                  setVotes(updatedVotes);
+                  setCurrentVote(null);
+                } else if (currentVote === null) {
+                  const updatedVotes = await firstVote({ id, myVote, token });
+                  setVotes(updatedVotes);
+                  setCurrentVote(0);
+                }
+              }}
+            >
+              <DislikeOutlined className="like-icon" />
             </Button>
           </Tooltip>
         )}
