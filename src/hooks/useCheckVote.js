@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
 
-export const useCheckLike = (idPost, token) => {
-    const [didUserLikeEntry, setDidUserLikeEntry] = useState(null); /*si recargo pagina no me guarda valor voto*/
+export const useCheckVote = (idPost, token) => {
+    const [currentVote, setCurrentVote] = useState(null); 
     const [error, setError] = useState("");
-
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await fetch(
 
-                    `${process.env.REACT_APP_API_URL}/checkVote/${idPost}`,
+                    `${process.env.REACT_APP_BASE_URL_POSTS}/checkVote/${idPost}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
                 );
 
                 const body = await res.json();
-                console.log(body)
                 if (res.ok) {
-                    setDidUserLikeEntry(body.data.didUserVote);
+                    setCurrentVote(body.data.currentVote);
                 } else {
                     throw new Error(body.message);
                 }
@@ -31,7 +29,7 @@ export const useCheckLike = (idPost, token) => {
         token && fetchData();
     }, [token, idPost]);
 
-    return { didUserLikeEntry, setDidUserLikeEntry, error };
+    return { currentVote, setCurrentVote, error };
 };
 
 

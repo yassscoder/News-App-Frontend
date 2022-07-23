@@ -1,8 +1,5 @@
 const votePostService = async ({id, myVote, token}) => {
     try {
-        // e.preventDefault();
-        //positive vote
-        console.log(token)
         const response = await fetch(
             `${process.env.REACT_APP_BASE_URL_POSTS}/vote/${id}`,
             {
@@ -38,17 +35,16 @@ const votePostService = async ({id, myVote, token}) => {
         if (!response.ok) {
             throw new Error(body.message);
         }
+        return body;
     }
 
-  const switchVote = async (id, token, signOfVote) => {
+  const switchVote = async ({id, token, myVote}) => {
     try {
-        // e.preventDefault();
-
         const response = await fetch(
             `${process.env.REACT_APP_BASE_URL_POSTS}/vote/${id}`,
             {
                 method: "PATCH",
-                body:  JSON.stringify({is_vote_positive: "false"}),
+                body:  JSON.stringify(myVote),
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",

@@ -5,7 +5,6 @@ export const useFetchWithDependencyArray = (url, [selectedField]) => {
  
   useEffect(() => {
     if (selectedField === null || selectedField === "") {
-      console.log("first render");
       setError("");
       return;
     }
