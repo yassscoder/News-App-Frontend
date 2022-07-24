@@ -8,9 +8,6 @@
   border: none;
   outline: none;
 }
-img {
-  max-width: 100%;
-}
 
 #root {
   min-height: 100vh;
@@ -59,3 +56,6 @@ ul {
 }
 
 
+img {
+  max-width: 100%;
+}

@@ -3,13 +3,15 @@ import { useState } from "react";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Tooltip } from "antd";
+import "./style.css";
+
 import {
   EditOutlined,
   DeleteOutlined,
   LikeOutlined,
   DislikeOutlined,
 } from "@ant-design/icons";
-import "./style.css";
+
 import {
   removeVotePostService,
   switchVote,
@@ -31,9 +33,9 @@ export const PostCard = ({ post }) => {
     total_votes,
     creation_date,
     user_id,
-    avatar: authorAvatar
+    avatar: authorAvatar,
   } = post;
- 
+
   const [votes, setVotes] = useState(total_votes);
   const { currentVote, setCurrentVote } = useCheckVote(id, token);
   const navigate = useNavigate();

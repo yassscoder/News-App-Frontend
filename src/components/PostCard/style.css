@@ -36,6 +36,7 @@
 .postCard__container--inner {
   padding: 0 0.8rem;
 }
+
 .postCard__text {
   margin: 0 0 0.8rem;
   font-size: 0.85rem;
@@ -44,15 +45,13 @@
   height: 3rem;
   overflow: hidden;
 }
-.postCard__text::after {
-  content: "...";
-}
 
 .postCard__avatar {
   border: thin solid #ff9100;
   border-radius: 50%;
   object-fit: cover;
   width: 1.2rem;
+  height: 1.2rem;
   object-fit: cover;
 }
 
