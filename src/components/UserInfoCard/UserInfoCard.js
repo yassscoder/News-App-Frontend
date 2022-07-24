@@ -1,15 +1,34 @@
-export const UserInfoCard = ({user}) => {
-    const {id, avatar,nick_name, email, bio} = user;
+import "./style.css";
+import { Link } from "react-router-dom";
 
-    return (
-        <article>
-            <img
-                src={`${process.env.REACT_APP_BASE_URL_IMAGES}/upload-avatar-users/${avatar}`}
-                alt={nick_name}
-            />
-            <p>Nick: {nick_name}</p>
-            <p>E-mail: {email}</p>
-            <p>Bio: {bio}</p>
-        </article>
-    )
-}
+export const UserInfoCard = ({ user }) => {
+  const { avatar, nick_name, email, bio } = user;
+
+  return (
+    <section className="userCard">
+      <div>
+        <img
+          src={`${process.env.REACT_APP_BASE_URL_IMAGES}/upload-avatar-users/${avatar}`}
+          alt={nick_name}
+        />
+        <p className="userCard__user">{nick_name}</p>
+
+        <div className="userCard__info">
+          <div>
+            <p className="userCard__title">Email:</p>
+            <p className="userCard__text  userCard__email">{email}</p>
+          </div>
+
+          <div>
+            <p className="userCard__title">Bio:</p>
+            <p className="userCard__text">
+              {bio}
+            </p>
+          </div>
+        </div>
+
+      <Link to="/myPosts" className="userCard__link">My posts</Link>
+      </div>
+    </section>
+  );
+};
