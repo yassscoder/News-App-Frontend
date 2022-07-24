@@ -1,3 +1,5 @@
+import "./style.css";
+
 const topics = [
   { topic: "sports" },
   { topic: "politics" },
@@ -10,13 +12,13 @@ export const TopicSelector = ({ setTopic }) => {
   };
 
   return (
-    <>
+    <div className="topicSelector">
       <select onChange={handleTopic}>
-        <option value="">Choose topic</option>
+        <option value="">Choose a topic</option>
         {topics.map((topic, index) => (
           <option key={index}>{topic.topic}</option>
         ))}
       </select>
-    </>
+    </div>
   );
 };

@@ -13,8 +13,8 @@ export const PostsByTopic = () => {
   const { data: posts, error } = useFetchWithDependencyArray(topicPostsEndpoint,[selectedTopic]);
 
   return (
-    <section className="posts">
-      <h2> Latest posts about topic </h2>
+    <section>
+      <h2>Posts by topic </h2>
       <TopicSelector setTopic={setTopic} />
       {posts && <PostList posts={posts} />}
       {error && <ErrorMessage error={error} />}

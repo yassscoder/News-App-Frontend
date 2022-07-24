@@ -1,0 +1,18 @@
+.datePicker {
+  margin: 0 0 1.5rem;
+  border: thin solid #cccccc;
+  padding: 0.2rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 4px 10px -2px;
+}
+
+::-webkit-datetime-edit {
+  padding: 0 1em;
+}
+
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-year-field,
+::-webkit-datetime-edit-text {
+  color: #ff9100;
+  text-transform: uppercase;
+}

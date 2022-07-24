@@ -11,8 +11,8 @@ export const PostsByDate = () => {
   const { data: posts, error } = useFetchWithDependencyArray(postsByDateEndpoint, [selectedDate]);
 
   return (
-    <section className="posts">
-      <h2>Posts of date: {selectedDate}</h2>
+    <section>
+      <h2>Posts by date:</h2>
       <DatePicker setDate={setDate} />
       {error && <ErrorMessage error={error} />}
       {posts && <PostList posts={posts} />}

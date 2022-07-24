@@ -1,3 +1,5 @@
+import "./style.css";
+
 export const DatePicker = ({ setDate }) => {
   const actualDate = new Date().toISOString().slice(0, 10);
   const initialDate = "2022-06-01";
@@ -5,7 +7,7 @@ export const DatePicker = ({ setDate }) => {
 
   return (
     <div>
-      <input
+      <input className="datePicker"
         type="date"
         min={initialDate}
         max={actualDate}
