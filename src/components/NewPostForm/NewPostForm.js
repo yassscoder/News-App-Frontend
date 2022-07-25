@@ -16,12 +16,12 @@ const createPostSchema = Yup.object().shape({
     .required("* Field required"),
 
   opening_line: Yup.string()
-    .min(2, "* Too Short!")
-    .max(50, "* Too Long!")    
+    .min(6, "* Too Short!")
+    .max(200, "* Too Long!")    
     .required("* Field required"),
 
   text: Yup.string()
-    .min(3, "* Too Short!")
+    .min(6, "* Too Short!")
     .max(500, "* Too Long!")
     .required("* Field required"),
 
