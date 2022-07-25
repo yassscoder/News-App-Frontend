@@ -1,6 +1,6 @@
 import { getPostsByDateEndpoint } from "../../API";
 import { PostList } from "../../components/PostList/PostList";
-import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
+import { CustomErrorMessage } from "../../components/ErrorMessage/CustomErrorMessage";
 import { DatePicker } from "../../components/DatePicker/DatePicker";
 import { useState } from "react";
 import { useFetchWithDependencyArray } from "../../hooks/useFetchWithDependencyArray";
@@ -14,7 +14,7 @@ export const PostsByDate = () => {
     <section>
       <h2>Posts by date:</h2>
       <DatePicker setDate={setDate} />
-      {error && <ErrorMessage error={error} />}
+      {error && <CustomErrorMessage error={error} />}
       {posts && <PostList posts={posts} />}
     </section>
   );

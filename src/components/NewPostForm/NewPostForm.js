@@ -1,144 +1,155 @@
-import {useState} from "react";
-import {Formik, Field, Form} from "formik";
-import {useNavigate} from "react-router-dom";
-import "./Postform.css";
-import {useUserTokenContext} from "../../contexts/UserTokenContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import {createPostService} from "../../services/createPostService";
-import {ErrorMessage} from "../ErrorMessage/ErrorMessage";
+import {CustomErrorMessage} from "../ErrorMessage/CustomErrorMessage";
+import {useUserTokenContext} from "../../contexts/UserTokenContext";
+import * as Yup from "yup";
+import "../Auth/style.css";
 
 const topics = ["sports", "politics", "finances"];
 
-function validateTitle(value) {
-    let error;
-    if (!value) {
-        error = "Required field";
-    } else if (!/^[-\w\s]{2,100}$/i.test(value)) {
-        error = "Title must be between 2 and 100 characters.";
-    }
-    return error;
-}
+const createPostSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(2, "* Too Short!")
+    .max(100, "* Too Long!")
+    .required("* Field required"),
 
-function validateOpeningLine(value) {
-    let error;
-    if (!value) {
-        error = "Required field";
-    } else if (!/^[-\w\s]{6,200}$/i.test(value)) {
-        error = "Opening Line must be between 6 and 200 characters.";
-    }
-    return error;
-}
+  opening_line: Yup.string()
+    .min(2, "* Too Short!")
+    .max(50, "* Too Long!")    
+    .required("* Field required"),
 
-function validateText(value) {
-    let error;
-    if (!value) {
-        error = "Required field";
-    } else if (!/^[-\w\s]{6,500}$/i.test(value)) {
-        error = "Title must be between 6 and 500 characters.";
-    }
-    return error;
-}
+  text: Yup.string()
+    .min(3, "* Too Short!")
+    .max(500, "* Too Long!")
+    .required("* Field required"),
+
+});
 
 function validateTopic(value) {
-    let error;
-    if (!value) {
-        error = "Required field";
-    } else if (!topics.includes(value)) {
-        error = "Topic must be sports, politics or finances.";
-    }
-
-    return error;
+  let error;
+  if (!value) {
+      error = "Required field";
+  } else if (!topics.includes(value)) {
+      error = "Topic must be sports, politics or finances.";
+  } 
+  return error;
 }
 
 export const NewPostForm = () => {
-    const userContext = useUserTokenContext();
-    const {token} = userContext;
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+  
+  const userContext = useUserTokenContext();
+  const {token} = userContext;
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-    return (
-        <div className="container__form">
-            <div className="post__form">
-                <Formik
-                    initialValues={{
-                        title: "", opening_line: "", text: "", topic: "", photo: "",
-                    }}
-                    onSubmit={async (values) => {
-                        const rebuildData = (values) => {
+  return (
+    <section>
+      <Formik
+        initialValues={{
+          title: "",
+          opening_line: "",
+          text: "",
+          topic: "",
+          photo: "",
+        }}
+        validationSchema={createPostSchema}
+        onSubmit={async (values, { resetForm }) => {
+          const rebuildData = (values) => {
 
-                            let formData = new FormData();
-                            formData.append("title", values.title);
-                            formData.append("opening_line", values.opening_line);
-                            formData.append("text", values.text);
-                            formData.append("topic", values.topic);
+            let formData = new FormData();
+            formData.append("title", values.title);
+            formData.append("opening_line", values.opening_line);
+            formData.append("text", values.text);
+            formData.append("topic", values.topic);
 
-                            if (values.photo !== "") {
-                                formData.append("photo", values.photo);
-                            }
-                            return formData;
-                        };
-                        const data = rebuildData(values);
-                        try {
-                            await createPostService({data, token});
-                            navigate("/")
-                        } catch (error) {
-                            setError(error.message)
-                        }
+            if (values.photo !== "") {
+                formData.append("photo", values.photo);
+            }
+            return formData;
+        };
+        const data = rebuildData(values);
+        try {
+            await createPostService({data, token});
+            resetForm();
+            navigate("/")
+        } catch (error) {
+            setError(error.message)
+        }
 
-                    }}
-                >
+    }}
+      >
+        {({ setFieldValue }) => (
+          <Form>
+            <div>
+              <div>
+                <label htmlFor="title">Title:</label>
+                <Field
+                  id="title"
+                  name="title"
+                  placeholder="Write the title of your post."
+                />
+                <ErrorMessage name="title">
+                  {(msg) => <p className="error">{msg}</p>}
+                </ErrorMessage>
+              </div>
 
-                    {({errors, isSubmitting, values, setFieldValue}) => (<Form>
-                            <label htmlFor="title">Title</label>
-                            <Field
-                                id="title"
-                                name="title"
-                                placeholder="Write the title of your post."
-                                validate={validateTitle}
-                            />
-                            {errors.title}
+              <div>
+                <label htmlFor="opening_line">Opening line:</label>
+                <Field
+                  id="opening_line"
+                  name="opening_line"
+                  placeholder="Write an opening line."
+                />
+                <ErrorMessage name="opening_line">
+                  {(msg) => <p className="error">{msg}</p>}
+                </ErrorMessage>
+              </div>
 
-                            <label htmlFor="opening_line">Opening line</label>
-                            <Field
-                                id="opening_line"
-                                name="opening_line"
-                                placeholder="Write an opening line."
-                                validate={validateOpeningLine}
-                            />
-                            {errors.opening_line}
+              <div>
+                <label htmlFor="text">Text:</label>
+                <Field
+                  id="text"
+                  name="text"
+                  placeholder="Write the text of your post."
+                />
+                <ErrorMessage name="text">
+                  {(msg) => <p className="error">{msg}</p>}
+                </ErrorMessage>
+              </div>
 
-                            <label htmlFor="text">Text</label>
-                            <Field
-                                id="text"
-                                name="text"
-                                placeholder="Write the text of your post."
-                                validate={validateText}
-                            />
-                            {errors.text}
+              <div>
+                <label htmlFor="topic">Topic:</label>
+                <Field
+                  id="topic"
+                  name="topic"
+                  placeholder="Sports, politics or finances"
+                  validate={validateTopic}
+                />
+                <ErrorMessage name="topic">
+                  {(msg) => <p className="error">{msg}</p>}
+                </ErrorMessage>
+              </div>
 
-                            <label htmlFor="topic">Topic</label>
-                            <Field
-                                id="topic"
-                                name="topic"
-                                placeholder="Sports, politics or finances"
-                                validate={validateTopic}
-                            />
-                            {errors.topic}
-
-                            <label htmlFor="photo">Photo post</label>
-                            <input
-                                id="photo"
-                                name="photo"
-                                type="file"
-                                onChange={(event) => {
-                                    setFieldValue('photo', event.target.files[0]);
-                                }}
-                            />
-
-                            <button type={"submit"} disabled={isSubmitting}>Create post</button>
-                        </Form>)}
-                </Formik>
-                {error && <ErrorMessage error={error}/>}
+              <div>
+                <label htmlFor="photo">Post photo</label>
+                <input
+                  id="photo"
+                  name="photo"
+                  type="file"
+                  onChange={(event) => {
+                    setFieldValue("photo", event.target.files[0]);
+                  }}
+                />
+              </div>
             </div>
-        </div>
-    );
+
+            <button type={"submit"}>Create post</button>
+          </Form>
+        )}
+      </Formik>
+      {error && <CustomErrorMessage error={error}/>}
+    </section>
+  );
 };

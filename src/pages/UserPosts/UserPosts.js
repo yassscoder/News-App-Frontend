@@ -1,5 +1,5 @@
 import {getPostsByUser} from "../../API";
-import {ErrorMessage} from "../../components/ErrorMessage/ErrorMessage";
+import {CustomErrorMessage} from "../../components/ErrorMessage/CustomErrorMessage";
 import {useUserTokenContext} from "../../contexts/UserTokenContext";
 import {useFetchWithDependencyArray} from "../../hooks/useFetchWithDependencyArray";
 import {PostList} from "../../components/PostList/PostList";
@@ -11,7 +11,7 @@ export const UserPosts = () => {
 
     const {data: posts, error} = useFetchWithDependencyArray(postsByUserEndpoint, [id]);
     if (error) {
-        return <ErrorMessage error={error}/>;
+        return <CustomErrorMessage error={error}/>;
     }
 
     return (

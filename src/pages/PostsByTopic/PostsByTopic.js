@@ -1,6 +1,6 @@
 import { getPostsByTopic } from "../../API";
 import { PostList } from "../../components/PostList/PostList";
-import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage";
+import { CustomErrorMessage } from "../../components/ErrorMessage/CustomErrorMessage";
 import { useState } from "react";
 import { useFetchWithDependencyArray } from "../../hooks/useFetchWithDependencyArray";
 import {TopicSelector} from "../../components/TopicSelector.js/TopicSelector";
@@ -17,7 +17,7 @@ export const PostsByTopic = () => {
       <h2>Posts by topic </h2>
       <TopicSelector setTopic={setTopic} />
       {posts && <PostList posts={posts} />}
-      {error && <ErrorMessage error={error} />}
+      {error && <CustomErrorMessage error={error} />}
     </section>
   );
 };

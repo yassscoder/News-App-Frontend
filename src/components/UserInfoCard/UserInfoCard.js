@@ -1,11 +1,12 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 
-export const UserInfoCard = ({ user }) => {
+export const UserInfoCard = ({ user, token }) => {
   const { avatar, nick_name, email, bio } = user;
 
   return (
-    <section className="userCard">
+    <>
+    {token && <section className="userCard">
       <div>
         <img
           src={`${process.env.REACT_APP_BASE_URL_IMAGES}/upload-avatar-users/${avatar}`}
@@ -29,6 +30,9 @@ export const UserInfoCard = ({ user }) => {
 
       <Link to="/myPosts" className="userCard__link">My posts</Link>
       </div>
+
     </section>
-  );
+}
+</>
+);
 };
