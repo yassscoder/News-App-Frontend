@@ -127,7 +127,7 @@ export const PostCard = ({ post }) => {
         </div>
       </div>
 
-      <div className="postCard__edit--buttons">
+      <div className="postCard__buttons">
         {user_id === user.id && (
           <Tooltip title="Edit Post">
             <Button
@@ -158,7 +158,7 @@ export const PostCard = ({ post }) => {
           </Tooltip>
         )}
       </div>
-      <div className="postCard__edit--buttons">
+      <div className="postCard__buttons">
         {token && user_id !== user.id && (
           <Tooltip title="Positive vote">
             <Button
@@ -183,7 +183,9 @@ export const PostCard = ({ post }) => {
                 }
               }}
             >
-              <LikeOutlined className="like-icon" />
+                <LikeOutlined className="like-icon" style={{
+                color: (currentVote === 1) ? "orange": "white"
+              }}/>
             </Button>
           </Tooltip>
         )}
@@ -211,7 +213,10 @@ export const PostCard = ({ post }) => {
                 }
               }}
             >
-              <DislikeOutlined className="like-icon" />
+               <DislikeOutlined className="like-icon" style={{
+                color: (currentVote === 0) ? "orange": "white"
+              }}
+              />
             </Button>
           </Tooltip>
         )}

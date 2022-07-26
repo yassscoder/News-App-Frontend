@@ -68,7 +68,7 @@
   padding: 0.4rem 0 0;
 }
 
-.postCard__edit--buttons {
+.postCard__buttons {
   background-color: rgb(113, 113, 113);
   margin: 0.3rem 0 0;
 }
@@ -80,6 +80,5 @@
 }
 
 .like-icon {
-  color: rgba(255, 145, 0, 0.85);
   font-size: 1.2rem;
 }
