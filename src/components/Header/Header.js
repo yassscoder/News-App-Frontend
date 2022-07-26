@@ -47,11 +47,10 @@ export const Header = () => {
                 }
             </div>
             <nav>
-                {<Link to="/">Latest posts</Link>}
-                {token && <Link to="/myPosts">My posts</Link>}
-                {token && <Link to="/createPost">Create post</Link>}
+                {<Link to="/">Latest</Link>}
                 <Link to="/filterByDate">Posts by date</Link>
                 <Link to="/filterByTopic">Posts by topic</Link>
+                {token && <Link to="/createPost">Create post</Link>}
             </nav>
         </header>
     );

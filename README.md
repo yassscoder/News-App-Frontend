@@ -33,6 +33,7 @@ This repo contains the Front-End of our previous News App Back-End project, in o
 - CSS Grid
 - React JS (use Create React App)
 - Mobile first workflow
+- Formik
 - Sweet Alert 2
 - Ant design
 
@@ -60,7 +61,7 @@ This repo contains the Front-End of our previous News App Back-End project, in o
 npm install
 ```
 
-###Run project
+### Run project
 
 ```
 npm start
