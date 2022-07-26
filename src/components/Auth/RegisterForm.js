@@ -73,9 +73,11 @@ export const RegisterForm = () => {
             Swal.fire({
               text: "Check your email to verify your account",
               icon: "success",
+              showCloseButton: true,
+              showConfirmButton: false,
               html: `<a href="https://www.google.com/gmail/" target="_blank">Activate your account now!</a>`,
             });
-            navigate("/validateEmail");
+            navigate("/login");
           } catch (error) {
             setError(error.message);
           }
