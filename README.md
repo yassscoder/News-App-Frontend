@@ -1,4 +1,78 @@
-# Getting Started with Create React App
+# News App 📝
+
+## Initial solution design
+
+### Mobile version 📱
+
+****
+**Posts**
+<p align="center">
+<img src="./DOCS/Create-post-publish.png" width=50%/>
+<img src="./DOCS/Edit-post.png" width=25.5%/>
+<img src="./DOCS/Latest.png" width=25%/></p>
+
+****
+**User**
+<p align="center">
+<img src="./DOCS/CreateUser-profile.png" width=50%/>
+<img src="./DOCS/login.png" width=25%/></p>
+
+****
+**Not found page**
+<p align="center">
+<img src="./DOCS/Not Found.png" width=25%/></p>
+
+## Built with 🛠️
+
+- Semantic HTML5 markup
+- Flexbox
+- CSS Grid
+- React JS (use Create React App)
+- Mobile first workflow
+- Sweet Alert 2
+- Ant design
+
+## Tools 🧰
+
+- Trello
+- Figma
+- Zoom
+- Visual Studio Code
+- Git/Github
+
+## Starting 🚀
+
+### Clone the repository:
+
+`git clone https://github.com/yassscoder/News-App-Frontend.git`
+### Fill the .env file
+
+> You can rename the .env.example to .env and complete it with your data.
+
+
+### Install dependencies:
+
+```
+npm install
+```
+
+###Run project
+
+```
+npm start
+```
+
+## Authors 👩🏽‍💻
+
+- [Claudia Campos](https://github.com/clauCampos)
+- [Yasmín Lorenzo](https://github.com/yassscoder)
+
+### Thanks for checking our project 🙏🏼
+
+If you have enjoyed visiting this web, tell others about this project 📢
+
+****
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

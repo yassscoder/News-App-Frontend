@@ -39,6 +39,7 @@ export const Header = () => {
                         className="btn__header"
                         onClick={() => {
                             logOut()
+                            navigate("/")
                         }}
                     >
                         Logout
