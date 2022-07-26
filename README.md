@@ -1,5 +1,9 @@
 # News App 📝
 
+## Introduction 
+
+This repo contains the Front-End of our previous News App Back-End project, in order to test the full project you should clone this repo: `git clone git@github.com:clauCampos/newsApp.git`
+ 
 ## Initial solution design
 
 ### Mobile version 📱
