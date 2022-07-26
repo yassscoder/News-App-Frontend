@@ -14,7 +14,7 @@ export const PostsByTopic = () => {
 
   return (
     <section>
-      <h2>Posts by topic </h2>
+      <h2>Posts </h2>
       <TopicSelector setTopic={setTopic} />
       {posts && <PostList posts={posts} />}
       {error && <CustomErrorMessage error={error} />}

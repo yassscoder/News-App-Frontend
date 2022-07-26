@@ -16,7 +16,7 @@ export const UserPosts = () => {
 
     return (
         <section>
-            <h2>My posts</h2>
+            <h2>My published posts</h2>
             {id && (
                 <>
                     {posts && <PostList posts={posts}/>}

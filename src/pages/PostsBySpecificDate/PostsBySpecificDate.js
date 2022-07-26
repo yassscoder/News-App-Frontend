@@ -12,7 +12,7 @@ export const PostsByDate = () => {
 
   return (
     <section>
-      <h2>Posts by date:</h2>
+      <h2>Posts</h2>
       <DatePicker setDate={setDate} />
       {error && <CustomErrorMessage error={error} />}
       {posts && <PostList posts={posts} />}
