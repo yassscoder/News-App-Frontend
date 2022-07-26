@@ -12,7 +12,6 @@ export const UserTokenContextProvider = ({children}) => {
         const getUserInfo = async () => {
             try {
                 const user = await getDataUserService(token);
-                console.log(user)
                 setUser(user);
             } catch (error) {
                 console.error("error en el contexto")

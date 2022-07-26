@@ -14,7 +14,6 @@ const numericRegex = /(?=.*[0-9])/;
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
-    //.lowercase()
     .min(6, "* Too Short!")
     .max(100, "* Too Long!")
     .email("* Invalid email or wrong format")
@@ -31,7 +30,6 @@ const loginSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const { setToken } = useUserTokenContext();
-  //const [sendForm, changeFormToSend] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 

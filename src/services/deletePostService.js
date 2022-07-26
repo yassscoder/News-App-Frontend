@@ -11,7 +11,6 @@ export const deletePostService = async (token, idPost) => {
   );
 
   const body = await response.json();
-   console.log(body)
   if (!response.ok) {
     throw new Error(body.message);
   }
