@@ -7,7 +7,6 @@ import { UserPosts } from "./pages/UserPosts/UserPosts";
 import {Login} from "./pages/Login/Login";
 import {PostForm} from "./pages/PostForm/PostForm";
 import {Register} from "./pages/Register/Register";
-import {EmailVerification} from "./pages/EmailVerification/EmailVerification";
 import {Logout} from "./pages/Logout/Logout";
 import {UserProfile} from "./pages/UserProfile/UserProfile";
 import {EditPost} from "./pages/EditPost/EditPost";
@@ -33,7 +32,6 @@ function App() {
           <Route path="/createPost" element={<PostForm />} />
           <Route path="/edit/:id" element={<EditPost/>} />
           <Route path="/myPosts" element={<UserPosts />} />
-          <Route path="/validateEmail" element={<EmailVerification />} />
           <Route path="/myProfile" element={<UserProfile/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
