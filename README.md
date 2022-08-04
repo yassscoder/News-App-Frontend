@@ -43,7 +43,7 @@ This repo contains the Front-End of our previous News App Back-End project, in o
 - Figma
 - Zoom
 - Visual Studio Code
-- Git/Github
+- Git/Github (Using TBD)
 
 ## Starting 🚀
 
